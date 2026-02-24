@@ -1,0 +1,116 @@
+.weather__details {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    height: 100%;
+    scroll-behavior: smooth;
+    overflow-y: auto;
+
+}
+
+.weather__details::-webkit-scrollbar {
+    display: none;
+}
+
+.weather__details a {
+    text-decoration: none;
+    color: #ffff;
+    font-size: 18px;
+    font-weight: normal;
+    margin-bottom: 52px;
+    transition: all 0.4s ease;
+}
+
+.weather__details a:hover {
+    text-decoration: underline;
+}
+
+.weather__details h1 {
+    font-weight: bold;
+    font-size: 18px;
+    margin-bottom: 32px;
+    text-transform: uppercase;
+}
+
+.weather__search {
+    position: relative;
+    display: flex;
+    width: 100%;
+}
+
+.weather__search {
+    margin-top: 40px;
+    padding-bottom: 41px;
+}
+
+.weather__search input {
+    width: 100%;
+    border: none;
+    outline: none;
+    background-color: transparent;
+    font-size: 20px;
+    color: white;
+    border-bottom: 2px solid white;
+    margin-bottom: 41px;
+    padding: 13px;
+    position: relative;
+}
+
+.weather__search:before {
+    content: url("../../../assets/images/search.svg");
+    position: absolute;
+    top: 0;
+    right: -15px;
+    transform: translateX(-100%);
+    z-index: -1;
+
+}
+
+.weather__details__item {
+    display: flex;
+    flex-direction: column;
+    gap: 33px;
+}
+
+.weather__details__item {
+    font-size: 18px;
+    font-weight: normal;
+}
+
+.weather__details__item hr {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 55px;
+    margin-bottom: 41px;
+}
+
+.weather__temps {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.weather__temps div {
+    display: flex;
+    gap: 10px;
+    align-items: center;
+    justify-content: center;
+}
+
+.weather__temps div p {
+    font-size: 18px;
+    font-weight: normal;
+}
+
+.weather__time {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+}
+
+.weather__time p {
+    font-size: 16px;
+    padding-left: 30px;
+}

@@ -1,0 +1,23 @@
+.clock {
+    font-size: 18px;
+    font-weight: bold;
+    color: #ffff;
+    font-family: monospace;
+    display: flex;
+    align-items: center;
+
+}
+
+.colonVisible {
+    opacity: 1;
+    transition: opacity 0.3s ease;
+    font-size: 18px;
+
+}
+
+.colonHidden {
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    font-size: 18px;
+
+}

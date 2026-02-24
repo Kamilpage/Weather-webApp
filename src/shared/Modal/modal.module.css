@@ -1,0 +1,29 @@
+.modal__overlay {
+    position: fixed;
+    top: 0; right: 0;
+    height: 100vh;
+    background-color: rgba(0,0,0,0.3);
+    backdrop-filter: blur(15px);
+    display: flex;
+    padding-left: 35px;
+    padding-right: 120px;
+    z-index: 999;
+    transform: translateX(100%);
+    opacity: 0;
+    transition: transform .4s ease, opacity .4s ease;
+    will-change: transform, opacity;
+}
+
+.modal__overlay.show {
+    transform: translateX(0);
+    opacity: 1;
+}
+
+.modal__content {
+    background: transparent;
+    color: #fff;
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .modal__overlay { transition: none; }
+}
