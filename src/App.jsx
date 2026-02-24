@@ -1,5 +1,5 @@
 import './App.css'
-import Hero from "./Components/Hero/Hero.jsx";
+import Hero from "./Components/Hero/Hero.tsx";
 
 function App() {
 
