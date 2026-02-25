@@ -1,71 +1,111 @@
 import React from 'react';
 import styles from "./sidebar.module.css";
 import temp from "../../../assets/images/temp.svg";
-import {useSelector} from "react-redux";
+import { useAppDispatch, useAppSelector } from "@/store/hooks";
+import { fetchWeather, setCity } from "@/store/weatherSlice";
+import {mockCities} from "@/Components/model/mockCities";
 
+const Sidebar: React.FC = () => {
+    const dispatch = useAppDispatch();
+    const { data, loading, error, city, weekly, notFound } = useAppSelector(s => s.weather);
 
-const Sidebar = () => {
-    const {data, loading, error} = useSelector((s) => s.weather);
-    console.log(data)
     if (loading) return <p>Загрузка...</p>;
     if (error) return <p>Ошибка: {error}</p>;
     if (!data) return null;
+
+    const handleSearch = (e: React.KeyboardEvent<HTMLInputElement>) => {
+        if (e.key === "Enter") {
+            const value = (e.target as HTMLInputElement).value.trim();
+            if (!value) return;
+            dispatch(setCity(value));
+            dispatch(fetchWeather(value));
+        }
+    };
+
     return (
-        <div className={styles.weather__details}>
-            <div className={styles.weather__search}>
-                <input type="text" placeholder='Search Location...'/>
+        <div className={styles.sidebar}>
+            <div className={styles.sidebar__search}>
+                <input
+                    type="text"
+                    placeholder="Search city..."
+                    defaultValue={city}
+                    onKeyDown={handleSearch}
+                />
             </div>
-            <a href='#'>Weather Details...</a>
-            <h1>{data.current.condition.text}</h1>
-            <div className={styles.weather__details__item}>
-                <div className={styles.weather__temps}>
-                    <p>Temp max</p>
+            <div className={styles.citySuggestions}>
+                {Object.keys(mockCities).map((c) => (
+                    <button
+                        key={c}
+                        onClick={() => {
+                            dispatch(setCity(c));
+                            dispatch(fetchWeather(c));
+                        }}
+                        className={styles.citySuggestions__item}
+                    >
+                        {c}
+                    </button>
+                ))}
+            </div>
+
+            <p className={styles.sidebar__sectionTitle}>Weather Details</p>
+
+            <h2 className={styles.sidebar__condition}>{data.current.condition.text}</h2>
+
+            <div className={styles.sidebar__metrics}>
+                <div className={styles.sidebar__metric}>
+                    <span>Temp max</span>
                     <div>
-                        <p>{data.current.temp_c}°</p>
-                        <img src={temp} alt="temp"/>
+                        <span className={styles.sidebar__metricValue}>{data.current.temp_c}°</span>
+                        <img src={temp} alt="" className={styles.sidebar__metricIcon}/>
                     </div>
                 </div>
-                <div className={styles.weather__temps}>
-                    <p>Temp min</p>
+
+                <div className={styles.sidebar__metric}>
+                    <span>Temp min</span>
                     <div>
-                        <p>15°</p>
-                        <img src={temp} alt="temp"/>
+                        <span className={styles.sidebar__metricValue}>15°</span>
+                        <img src={temp} alt="" className={styles.sidebar__metricIcon}/>
                     </div>
                 </div>
-                <div className={styles.weather__temps}>
-                    <p>Humadity</p>
+
+                <div className={styles.sidebar__metric}>
+                    <span>Humidity</span>
                     <div>
-                        <p>{data.current.humidity}%</p>
-                        <img src={temp} alt="temp"/>
+                        <span className={styles.sidebar__metricValue}>{data.current.humidity}%</span>
+                        <img src={temp} alt="" className={styles.sidebar__metricIcon}/>
                     </div>
                 </div>
-                <div className={styles.weather__temps}>
-                    <p>Cloudy</p>
+
+                <div className={styles.sidebar__metric}>
+                    <span>Cloudy</span>
                     <div>
-                        <p>{data.current.feelslike_c}%</p>
-                        <img src={temp} alt="temp"/>
+                        <span className={styles.sidebar__metricValue}>{data.current.cloud}%</span>
+                        <img src={temp} alt="" className={styles.sidebar__metricIcon}/>
                     </div>
                 </div>
-                <div className={styles.weather__temps}>
-                    <p>Wind</p>
+
+                <div className={styles.sidebar__metric}>
+                    <span>Wind</span>
                     <div>
-                        <p>{data.current.wind_kph}m/ph</p>
-                        <img src={temp} alt="temp"/>
+                        <span className={styles.sidebar__metricValue}>{data.current.wind_kph} kph</span>
+                        <img src={temp} alt="" className={styles.sidebar__metricIcon}/>
                     </div>
                 </div>
-                <hr/>
-                <a href='#'>Today’s Weather Forecast...</a>
-                <div>
-                    <div className={styles.weather__temps}>
-                        <div>
-                            <img src={temp} alt="temp"/>
-                            <div className={styles.weather__time}>
-                                <p>Snow</p>
-                            </div>
-                        </div>
-                        <p>{data.current.pressure_in}%</p>
+            </div>
+
+            <hr className={styles.sidebar__divider}/>
+
+            <p className={styles.sidebar__sectionTitle}>Weekly Forecast</p>
+
+            <div className={styles.sidebar__forecast}>
+                {weekly?.map(day => (
+                    <div key={day.day} className={styles.sidebar__forecastItem}>
+                        <p className={styles.sidebar__forecastDay}>{day.day}</p>
+                        <img src={day.icon} alt="" />
+                        <p className={styles.sidebar__forecastTemp}>{day.temp}°</p>
+                        <span>{day.text}</span>
                     </div>
-                </div>
+                ))}
             </div>
         </div>
     );
