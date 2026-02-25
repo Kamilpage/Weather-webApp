@@ -54,7 +54,7 @@ const Sidebar: React.FC = () => {
             <div className={styles.sidebar__metrics}>
                 <div className={styles.sidebar__metric}>
                     <span>Temp max</span>
-                    <div>
+                    <div className={styles.sidebar__temp}>
                         <span className={styles.sidebar__metricValue}>{data.current.temp_c}°</span>
                         <img src={temp} alt="" className={styles.sidebar__metricIcon}/>
                     </div>
@@ -62,7 +62,7 @@ const Sidebar: React.FC = () => {
 
                 <div className={styles.sidebar__metric}>
                     <span>Temp min</span>
-                    <div>
+                    <div className={styles.sidebar__temp}>
                         <span className={styles.sidebar__metricValue}>15°</span>
                         <img src={temp} alt="" className={styles.sidebar__metricIcon}/>
                     </div>
@@ -70,7 +70,7 @@ const Sidebar: React.FC = () => {
 
                 <div className={styles.sidebar__metric}>
                     <span>Humidity</span>
-                    <div>
+                    <div className={styles.sidebar__temp}>
                         <span className={styles.sidebar__metricValue}>{data.current.humidity}%</span>
                         <img src={temp} alt="" className={styles.sidebar__metricIcon}/>
                     </div>
@@ -78,7 +78,7 @@ const Sidebar: React.FC = () => {
 
                 <div className={styles.sidebar__metric}>
                     <span>Cloudy</span>
-                    <div>
+                    <div className={styles.sidebar__temp}>
                         <span className={styles.sidebar__metricValue}>{data.current.cloud}%</span>
                         <img src={temp} alt="" className={styles.sidebar__metricIcon}/>
                     </div>
@@ -86,7 +86,7 @@ const Sidebar: React.FC = () => {
 
                 <div className={styles.sidebar__metric}>
                     <span>Wind</span>
-                    <div>
+                    <div className={styles.sidebar__temp}>
                         <span className={styles.sidebar__metricValue}>{data.current.wind_kph} kph</span>
                         <img src={temp} alt="" className={styles.sidebar__metricIcon}/>
                     </div>

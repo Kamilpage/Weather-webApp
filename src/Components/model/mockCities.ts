@@ -1,14 +1,15 @@
+import cloud from '@/assets/weatherIcons/cloud.svg'
+import sunny from '@/assets/weatherIcons/sun.svg'
+import partlyCloudy from '@/assets/weatherIcons/cloud-sun.svg'
+import fog from '@/assets/weatherIcons/cloud-fog.svg'
+
+
+
+
 export const mockCities = {
     Tashkent: {
         location: { name: "Tashkent", localtime: "2026-02-25 14:00" },
         current: { temp_c: 18, humidity: 40, cloud: 10, wind_kph: 6,
-            condition: { text: "Sunny", icon: "...sunny..." }
-        }
-    },
-
-    Dubai: {
-        location: { name: "Dubai", localtime: "2026-02-25 10:00" },
-        current: { temp_c: 32, humidity: 20, cloud: 0, wind_kph: 10,
             condition: { text: "Sunny", icon: "...sunny..." }
         }
     },

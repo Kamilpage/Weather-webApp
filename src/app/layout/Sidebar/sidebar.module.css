@@ -55,6 +55,13 @@
     align-items: center;
 }
 
+.sidebar__temp{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 16px;
+}
+
 .sidebar__metricValue {
     font-size: 18px;
 }
